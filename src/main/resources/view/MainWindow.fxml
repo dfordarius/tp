@@ -78,7 +78,7 @@
           </VBox.margin>
         </StackPane>
 
-        <StackPane fx:id="commandBoxPlaceholder" maxWidth="1.7976931348623157E308" prefHeight="40.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <StackPane fx:id="commandBoxPlaceholder" maxWidth="1.7976931348623157E308" prefHeight="40.0" style="-fx-effect: dropshadow(three-pass-box, derive(#F88017, -20%), 10, 0, 4, 4);" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <VBox.margin>
             <Insets bottom="5.0" left="10.0" right="10.0" top=" 0.0" />
           </VBox.margin>
