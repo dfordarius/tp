@@ -19,7 +19,7 @@ public interface FitBookStorage {
 
     /**
      * Returns FitBook data as a {@link ReadOnlyFitBook}.
-     *   Returns {@code Optional.empty()} if storage file is not found.
+     * Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
@@ -32,14 +32,14 @@ public interface FitBookStorage {
 
     /**
      * Saves the given {@link ReadOnlyFitBook} to the storage.
-     * @param addressBook cannot be null.
+     * @param fitBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveFitBook(ReadOnlyFitBook addressBook) throws IOException;
+    void saveFitBook(ReadOnlyFitBook fitBook) throws IOException;
 
     /**
      * @see #saveFitBook(ReadOnlyFitBook)
      */
-    void saveFitBook(ReadOnlyFitBook addressBook, Path filePath) throws IOException;
+    void saveFitBook(ReadOnlyFitBook fitBook, Path filePath) throws IOException;
 
 }
