@@ -81,7 +81,7 @@ public class Client {
     public boolean isAppointmentEmpty() {
         return appointments.isEmpty();
     }
-
+/*
     public static void appointmentValidityCheck() {
         Iterator<Appointment> appointmentIterator = appointments.iterator();
         int i = 1;
@@ -95,6 +95,8 @@ public class Client {
             i++;
         }
     }
+
+ */
 
     /**
      * Returns an immutable appointment set, which throws {@code UnsupportedOperationException}

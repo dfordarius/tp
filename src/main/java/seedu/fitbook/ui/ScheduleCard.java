@@ -49,7 +49,7 @@ public class ScheduleCard extends UiPart<Region> {
     public ScheduleCard(Client client, int displayedIndex) {
         super(FXML);
         this.client = client;
-        client.appointmentValidityCheck();
+        //client.appointmentValidityCheck();
 
         // Sort the appointments by datetime
         ObservableList<Appointment> appointmentsList = FXCollections.observableArrayList(client.getAppointments());

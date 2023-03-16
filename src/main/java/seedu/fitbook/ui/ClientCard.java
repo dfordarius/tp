@@ -63,7 +63,7 @@ public class ClientCard extends UiPart<Region> {
         weight.setText(client.getWeight().value + " Kg");
         gender.setText(client.getGender().value);
         setCalorieCondition(client, calorie);
-        client.appointmentValidityCheck();
+     //   client.appointmentValidityCheck();
         client.getAppointments().stream()
                 .sorted(Comparator.comparing(appointment -> appointment.appointmentTime))
                 .forEach(appointment -> appointments.getChildren().add(new Label(appointment.appointmentTime)));
