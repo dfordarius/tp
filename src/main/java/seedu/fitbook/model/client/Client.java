@@ -1,9 +1,13 @@
 package seedu.fitbook.model.client;
 
+import static java.time.Clock.systemDefaultZone;
 import static seedu.fitbook.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
 
@@ -25,9 +29,10 @@ public class Client {
 
     private final Weight weight;
     private final Gender gender;
-    private final Set<Appointment> appointments = new HashSet<>();
+    private static final Set<Appointment> appointments = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
     private final Calorie calorie;
+    public static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
     /**
      * Every field must be present and not null.
@@ -77,6 +82,19 @@ public class Client {
         return appointments.isEmpty();
     }
 
+    public static void appointmentValidityCheck() {
+        Iterator<Appointment> appointmentIterator = appointments.iterator();
+        int i = 1;
+      //  System.out.println(LocalDateTime.parse(LocalDateTime.now().format(dateTimeFormatter)));
+        while(i < appointments.size()) {
+            //System.out.println("hi");
+            Appointment temp = appointmentIterator.next();
+            if(temp.getDateTime().compareTo(LocalDateTime.now()) == -1 ) {
+                appointments.remove(temp);
+            }
+            i++;
+        }
+    }
 
     /**
      * Returns an immutable appointment set, which throws {@code UnsupportedOperationException}

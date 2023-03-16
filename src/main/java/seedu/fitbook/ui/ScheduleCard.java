@@ -42,12 +42,14 @@ public class ScheduleCard extends UiPart<Region> {
     private FlowPane tags;
 
 
+
     /**
      * Creates a {@code ClientCode} with the given {@code Client} and index to display.
      */
     public ScheduleCard(Client client, int displayedIndex) {
         super(FXML);
         this.client = client;
+        client.appointmentValidityCheck();
 
         // Sort the appointments by datetime
         ObservableList<Appointment> appointmentsList = FXCollections.observableArrayList(client.getAppointments());

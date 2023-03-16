@@ -81,6 +81,9 @@ public class Routine {
                 && otherRoutine.getRoutineName().equals(getRoutineName());
     }
 
+    public void deleteExercise(int targetIndex) {
+        this.exercises.remove(targetIndex);
+    }
     @Override
     public int hashCode() {
         return Objects.hash(routineName);

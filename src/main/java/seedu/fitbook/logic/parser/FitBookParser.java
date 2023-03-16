@@ -12,6 +12,7 @@ import seedu.fitbook.logic.commands.ClearCommand;
 import seedu.fitbook.logic.commands.ClearRoutinesCommand;
 import seedu.fitbook.logic.commands.Command;
 import seedu.fitbook.logic.commands.DeleteCommand;
+import seedu.fitbook.logic.commands.DeleteExerciseCommand;
 import seedu.fitbook.logic.commands.DeleteRoutineCommand;
 import seedu.fitbook.logic.commands.EditCommand;
 import seedu.fitbook.logic.commands.EditRoutineCommand;
@@ -92,6 +93,8 @@ public class FitBookParser {
         case DeleteRoutineCommand.COMMAND_WORD:
             return new DeleteRoutineCommandParser().parse(arguments);
 
+        case DeleteExerciseCommand.COMMAND_WORD:
+            return new DeleteExerciseCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

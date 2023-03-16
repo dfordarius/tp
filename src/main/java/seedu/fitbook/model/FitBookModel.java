@@ -119,6 +119,8 @@ public interface FitBookModel {
      */
     void addRoutine(Routine routine);
 
+    void removeExercise(Routine routine, int targetIndex);
+
     /**
      * Replaces the given routine {@code target} with {@code editedRoutine}.
      * {@code target} must exist in the exercise routine.
