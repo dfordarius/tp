@@ -29,7 +29,7 @@ public class Client {
 
     private final Weight weight;
     private final Gender gender;
-    private static final Set<Appointment> appointments = new HashSet<>();
+    private final Set<Appointment> appointments = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
     private final Calorie calorie;
     public static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
@@ -81,10 +81,10 @@ public class Client {
     public boolean isAppointmentEmpty() {
         return appointments.isEmpty();
     }
-/*
-    public static void appointmentValidityCheck() {
+
+    public void appointmentValidityCheck() {
         Iterator<Appointment> appointmentIterator = appointments.iterator();
-        int i = 1;
+        int i = 0;
       //  System.out.println(LocalDateTime.parse(LocalDateTime.now().format(dateTimeFormatter)));
         while(i < appointments.size()) {
             //System.out.println("hi");
@@ -96,7 +96,7 @@ public class Client {
         }
     }
 
- */
+
 
     /**
      * Returns an immutable appointment set, which throws {@code UnsupportedOperationException}
