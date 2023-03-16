@@ -19,7 +19,7 @@ import seedu.fitbook.model.client.ClientAppointmentComparator;
 public class SchedulePanel extends UiPart<Region> {
     private static final String FXML = "SchedulePanel.fxml";
     private final Logger logger = LogsCenter.getLogger(SchedulePanel.class);
-
+   // private FilteredList<Client> filteredList;
     @FXML
     private ListView<Client> scheduleView;
 
@@ -31,6 +31,7 @@ public class SchedulePanel extends UiPart<Region> {
 
         FilteredList<Client> filteredList =
                 new FilteredList<>(scheduleList, client -> !client.getAppointments().isEmpty());
+
         ClientAppointmentComparator comparator = new ClientAppointmentComparator();
         SortedList<Client> sortedList = new SortedList<>(filteredList, comparator);
 
@@ -49,13 +50,34 @@ public class SchedulePanel extends UiPart<Region> {
                 System.out.println(client.getAppointments().toString());
             }
             if (empty || client == null || client.getAppointments().isEmpty()) {
-
                 setGraphic(null);
                 setText(null);
             } else {
+                client.appointmentValidityCheck();
                 setGraphic(new ScheduleCard(client, getIndex() + 1).getRoot());
             }
         }
     }
+
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code Appointment} using a {@code ScheduleCard}.
+     */ /*
+    class ScheduleViewCell extends ListCell<Client> {
+        @Override
+        protected void updateItem(Client client, boolean empty) {
+            super.updateItem(client, empty);
+            if (client != null) {
+                System.out.println(client.getAppointments().toString());
+            }
+            if (empty || client == null || client.getAppointments().isEmpty()) {
+                setGraphic(null);
+                setText(null);
+            } else {
+                client.appointmentValidityCheck();
+                setGraphic(new ScheduleCard(client, filteredList.indexOf(client)+ 1).getRoot());
+            }
+        }
+    }
+    */
 
 }
