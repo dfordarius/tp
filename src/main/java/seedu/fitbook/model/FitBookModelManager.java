@@ -140,9 +140,9 @@ public class FitBookModelManager implements FitBookModel {
         fitBookExerciseRoutine.removeRoutine(target);
     }
     @Override
-    public void removeExercise(Routine routine, int targetIndex){
+    public void removeExercise(Routine routine, int targetIndex) {
         requireAllNonNull(routine, targetIndex);
-        fitBookExerciseRoutine.removeExercise(routine,targetIndex);
+        fitBookExerciseRoutine.removeExercise(routine, targetIndex);
     }
 
     @Override

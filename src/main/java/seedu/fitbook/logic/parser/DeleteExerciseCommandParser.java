@@ -19,9 +19,9 @@ public class DeleteExerciseCommandParser implements Parser<DeleteExerciseCommand
      */
     public DeleteExerciseCommand parse(String args) throws ParseException {
         try {
-            String argsplit[] = args.split(" ");
-            Index index = ParserUtil.parseIndex(argsplit[1]);
-            Index index2 = ParserUtil.parseIndex(argsplit[2]);
+            String[] argSplit = args.split(" ");
+            Index index = ParserUtil.parseIndex(argSplit[1]);
+            Index index2 = ParserUtil.parseIndex(argSplit[2]);
             return new DeleteExerciseCommand(index, index2);
         } catch (ParseException pe) {
             throw new ParseException(

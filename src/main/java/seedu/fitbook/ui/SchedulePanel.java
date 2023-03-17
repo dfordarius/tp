@@ -19,7 +19,7 @@ import seedu.fitbook.model.client.ClientAppointmentComparator;
 public class SchedulePanel extends UiPart<Region> {
     private static final String FXML = "SchedulePanel.fxml";
     private final Logger logger = LogsCenter.getLogger(SchedulePanel.class);
-   // private FilteredList<Client> filteredList;
+    // private FilteredList<Client> filteredList;
     @FXML
     private ListView<Client> scheduleView;
 
@@ -59,9 +59,7 @@ public class SchedulePanel extends UiPart<Region> {
         }
     }
 
-    /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Appointment} using a {@code ScheduleCard}.
-     */ /*
+    /*
     class ScheduleViewCell extends ListCell<Client> {
         @Override
         protected void updateItem(Client client, boolean empty) {

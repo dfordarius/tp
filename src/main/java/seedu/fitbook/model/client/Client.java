@@ -1,10 +1,8 @@
 package seedu.fitbook.model.client;
 
-import static java.time.Clock.systemDefaultZone;
 import static seedu.fitbook.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -32,7 +30,6 @@ public class Client {
     private final Set<Appointment> appointments = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
     private final Calorie calorie;
-    public static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
     /**
      * Every field must be present and not null.
@@ -85,11 +82,11 @@ public class Client {
     public void appointmentValidityCheck() {
         Iterator<Appointment> appointmentIterator = appointments.iterator();
         int i = 0;
-      //  System.out.println(LocalDateTime.parse(LocalDateTime.now().format(dateTimeFormatter)));
-        while(i < appointments.size()) {
+        //  System.out.println(LocalDateTime.parse(LocalDateTime.now().format(dateTimeFormatter)));
+        while (i < appointments.size()) {
             //System.out.println("hi");
             Appointment temp = appointmentIterator.next();
-            if(temp.getDateTime().compareTo(LocalDateTime.now()) == -1 ) {
+            if (temp.getDateTime().compareTo(LocalDateTime.now()) == -1) {
                 appointments.remove(temp);
             }
             i++;
@@ -190,5 +187,4 @@ public class Client {
         }
         return builder.toString();
     }
-
 }

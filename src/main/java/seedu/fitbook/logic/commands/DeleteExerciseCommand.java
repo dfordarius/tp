@@ -48,14 +48,14 @@ public class DeleteExerciseCommand extends Command {
         Routine routineToDelete = lastShownList.get(targetRoutine.getZeroBased());
         Exercise exercise1 = routine.getExercises().get(targetExercise.getZeroBased());
         System.out.println(routineToDelete.getExercises().size());
-        for(Exercise exercise : routine.getExercises()) {
+        for (Exercise exercise : routine.getExercises()) {
             System.out.println(exercise.exerciseName.toString());
         }
         model.removeExercise(routineToDelete, targetExercise.getZeroBased());
         System.out.println(routineToDelete.getExercises().size());
         return new CommandResult(String.format(MESSAGE_DELETE_ROUTINE_SUCCESS, exercise1, routineToDelete));
     }
-/*
+    /*
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -63,5 +63,5 @@ public class DeleteExerciseCommand extends Command {
                 && targetIndex.equals(((DeleteRoutineCommand) other).targetIndex)); // state check
     }
 
- */
+    */
 }
