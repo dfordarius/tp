@@ -181,6 +181,11 @@ public class AddRoutineCommandTest {
         }
 
         @Override
+        public void removeExercise(Routine routine, int targetIndex) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setRoutine(Routine target, Routine editedRoutine) {
             throw new AssertionError("This method should not be called.");
         }

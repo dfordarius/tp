@@ -25,10 +25,10 @@ public class DeleteExerciseCommandParser implements Parser<DeleteExerciseCommand
             return new DeleteExerciseCommand(index, index2);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteRoutineCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteExerciseCommand.MESSAGE_USAGE), pe);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new ParseException(
-                    String.format("out of bounds", DeleteExerciseCommand.MESSAGE_USAGE), e);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteExerciseCommand.MESSAGE_USAGE), e);
 
         }
     }
