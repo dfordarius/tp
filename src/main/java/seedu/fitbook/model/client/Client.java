@@ -75,19 +75,20 @@ public class Client {
         return gender;
     }
 
-    public boolean isAppointmentEmpty() {
-        return appointments.isEmpty();
+    public boolean isAppointmentEmpty(Client client) {
+        client.appointmentValidityCheck(client.getAppointments());
+        return client.getAppointments().isEmpty();
     }
 
-    public void appointmentValidityCheck() {
+    public void appointmentValidityCheck(Set<Appointment> appointments) {
         Iterator<Appointment> appointmentIterator = appointments.iterator();
         int i = 0;
         //  System.out.println(LocalDateTime.parse(LocalDateTime.now().format(dateTimeFormatter)));
-        while (i < appointments.size()) {
+        while (i < this.appointments.size()) {
             //System.out.println("hi");
             Appointment temp = appointmentIterator.next();
             if (temp.getDateTime().compareTo(LocalDateTime.now()) == -1) {
-                appointments.remove(temp);
+                this.appointments.remove(temp);
             }
             i++;
         }

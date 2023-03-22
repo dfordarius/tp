@@ -1,6 +1,7 @@
 package seedu.fitbook.ui;
 
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -28,9 +29,8 @@ public class SchedulePanel extends UiPart<Region> {
      */
     public SchedulePanel(ObservableList<Client> scheduleList) {
         super(FXML);
-
         FilteredList<Client> filteredList =
-                new FilteredList<>(scheduleList, client -> !client.getAppointments().isEmpty());
+                new FilteredList<>(scheduleList, client -> !client.isAppointmentEmpty(client));
 
         ClientAppointmentComparator comparator = new ClientAppointmentComparator();
         SortedList<Client> sortedList = new SortedList<>(filteredList, comparator);
@@ -50,11 +50,13 @@ public class SchedulePanel extends UiPart<Region> {
                 System.out.println(client.getAppointments().toString());
             }
             if (empty || client == null || client.getAppointments().isEmpty()) {
-                setGraphic(null);
-                setText(null);
+                //setGraphic(null);
+                //setText(null);
             } else {
-                client.appointmentValidityCheck();
-                setGraphic(new ScheduleCard(client, getIndex() + 1).getRoot());
+                if(!client.isAppointmentEmpty(client)) {
+                    setGraphic(new ScheduleCard(client, getIndex() + 1).getRoot());
+
+                }
             }
         }
     }
