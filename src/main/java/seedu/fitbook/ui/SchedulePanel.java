@@ -50,8 +50,8 @@ public class SchedulePanel extends UiPart<Region> {
                 System.out.println(client.getAppointments().toString());
             }
             if (empty || client == null || client.getAppointments().isEmpty()) {
-                //setGraphic(null);
-                //setText(null);
+                setGraphic(null);
+                setText(null);
             } else {
                 if(!client.isAppointmentEmpty(client)) {
                     setGraphic(new ScheduleCard(client, getIndex() + 1).getRoot());
