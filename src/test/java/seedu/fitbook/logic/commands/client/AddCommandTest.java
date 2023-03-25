@@ -24,6 +24,7 @@ import seedu.fitbook.model.ReadOnlyFitBook;
 import seedu.fitbook.model.ReadOnlyFitBookExerciseRoutine;
 import seedu.fitbook.model.ReadOnlyUserPrefs;
 import seedu.fitbook.model.client.Client;
+import seedu.fitbook.model.routines.Exercise;
 import seedu.fitbook.model.routines.Routine;
 import seedu.fitbook.testutil.client.ClientBuilder;
 
@@ -184,6 +185,11 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        public void addExercise(Routine routine, Exercise exercise) {
+
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Override
         public void setRoutine(Routine target, Routine editedRoutine) {
             throw new AssertionError("This method should not be called.");
@@ -198,6 +204,7 @@ public class AddCommandTest {
         public void updateFilteredRoutineList(Predicate<Routine> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
     }
 
     /**

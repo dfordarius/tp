@@ -21,12 +21,11 @@ public class Client {
     private final Name name;
     private final Phone phone;
     private final Email email;
-
     // Data fields
     private final Address address;
-
     private final Weight weight;
     private final Gender gender;
+    private final Goal goal;
     private final Set<Appointment> appointments = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
     private final Calorie calorie;
@@ -35,8 +34,8 @@ public class Client {
      * Every field must be present and not null.
      */
     public Client(Name name, Phone phone, Email email, Address address, Set<Appointment> appointments,
-                  Weight weight, Gender gender, Calorie calorie, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, appointments, weight, gender, tags);
+                  Weight weight, Gender gender, Calorie calorie, Goal goal, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, appointments, weight, gender, calorie, goal, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -46,6 +45,7 @@ public class Client {
         this.tags.addAll(tags);
         this.weight = weight;
         this.gender = gender;
+        this.goal = goal;
     }
 
     public Name getName() {
@@ -71,6 +71,7 @@ public class Client {
     public Weight getWeight() {
         return weight;
     }
+
     public Gender getGender() {
         return gender;
     }
@@ -94,6 +95,13 @@ public class Client {
         }
     }
 
+    public Goal getGoal() {
+        return goal;
+    }
+
+    public boolean isAppointmentEmpty() {
+        return appointments.isEmpty();
+    }
 
 
     /**
@@ -147,14 +155,15 @@ public class Client {
                 && otherClient.getWeight().equals(getWeight())
                 && otherClient.getGender().equals(getGender())
                 && otherClient.getAppointments().equals(getAppointments())
-                && otherClient.getCalorie().equals(getCalorie())
-                && otherClient.getTags().equals(getTags());
+                && otherClient.getTags().equals(getTags())
+                && otherClient.getGoal().equals(getGoal())
+                && otherClient.getCalorie().equals(getCalorie());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, appointments, weight, gender, calorie, tags);
+        return Objects.hash(name, phone, email, address, appointments, weight, gender, calorie, goal, tags);
     }
 
     @Override
@@ -173,7 +182,9 @@ public class Client {
                 .append(getWeight())
                 .append(" Kg")
                 .append(" Gender: ")
-                .append(getGender());
+                .append(getGender())
+                .append("; Goal: ")
+                .append(getGoal());
 
         Set<Appointment> appointments = getAppointments();
         if (!appointments.isEmpty()) {

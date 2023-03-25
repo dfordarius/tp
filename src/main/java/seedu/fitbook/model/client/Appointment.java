@@ -5,24 +5,30 @@ import static seedu.fitbook.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 /**
- * Represents a Person's appointment time in the address book.
+ * Represents a Client's appointment time in FitBook.
  * Guarantees: immutable; is valid as declared in {@link #isValidAppointment(String)}
  */
 public class Appointment implements Comparable<Appointment> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Appointment should be in dd-mm-yyyy HH:mm format.";
+    public static final String MESSAGE_DATE_CONSTRAINTS =
+            "Appointment should have valid date.";
     public static final String DATE_CONSTRAINTS =
             "Appointment should only be after the current date and time.";
     public static final String VALIDATION_REGEX =
             "^(?:0[1-9]|[1-2][0-9]|3[0-1])-(?:0[1-9]|1[0-2])-(?:[0-9]{4}) (?:[01][0-9]|2[0-3]):(?:[0-5][0-9])$";
-    public static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+    public static final DateTimeFormatter dateTimeFormatter =
+            DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+    public final DateTimeFormatter dateTimeFormatterForStr = DateTimeFormatter.ofPattern("dd MMM uuuu HH:mm");
+
 
     public final String appointmentTime;
-    private final LocalDateTime localDateTime;
-
+    public final LocalDateTime localDateTime;
 
     /**
      * Constructs an {@code Appoinment}.
@@ -31,9 +37,26 @@ public class Appointment implements Comparable<Appointment> {
      */
     public Appointment(String appointment) {
         requireNonNull(appointment);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm");
+        checkArgument(isValidDate(appointment), MESSAGE_DATE_CONSTRAINTS);
         checkArgument(isValidAppointment(appointment), MESSAGE_CONSTRAINTS);
         appointmentTime = appointment;
-        this.localDateTime = LocalDateTime.parse(appointment, dateTimeFormatter);
+        this.localDateTime = LocalDateTime.parse(appointment, formatter);
+    }
+
+    /**
+     * Returns true if a given string is a valid date.
+     */
+    public static boolean isValidDate(String appointment) {
+        assert appointment != null : "appointment is null";
+        try {
+            DateTimeFormatter formatter =
+                    DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm").withResolverStyle(ResolverStyle.STRICT);
+            LocalDateTime.parse(appointment, formatter);
+            return appointment.matches(VALIDATION_REGEX);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
     }
 
     /**
@@ -52,7 +75,7 @@ public class Appointment implements Comparable<Appointment> {
     }
     @Override
     public String toString() {
-        return localDateTime.format(dateTimeFormatter);
+        return "[" + localDateTime.format(dateTimeFormatter) + "] ";
     }
 
     @Override

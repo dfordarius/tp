@@ -12,7 +12,11 @@ import seedu.fitbook.model.routines.Exercise;
 import seedu.fitbook.model.routines.Routine;
 
 /**
+<<<<<<< HEAD
  * Deletes a Routine identified using it's displayed index from the FitBook.
+=======
+ * Deletes an Exercise identified using it's displayed index from the FitBook.
+>>>>>>> master
  */
 public class DeleteExerciseCommand extends Command {
 
@@ -27,6 +31,11 @@ public class DeleteExerciseCommand extends Command {
 
     private final Index targetRoutine;
     private final Index targetExercise;
+
+    /**
+     * Creates an DeleteExerciseCommand to delete the specified {@code Exercise} of the
+     * specified {@code Routine}.
+     */
 
     public DeleteExerciseCommand(Index targetRoutine, Index targetExercise) {
         this.targetRoutine = targetRoutine;
@@ -47,21 +56,17 @@ public class DeleteExerciseCommand extends Command {
         }
         Routine routineToDelete = lastShownList.get(targetRoutine.getZeroBased());
         Exercise exercise1 = routine.getExercises().get(targetExercise.getZeroBased());
-        System.out.println(routineToDelete.getExercises().size());
-        for (Exercise exercise : routine.getExercises()) {
-            System.out.println(exercise.exerciseName.toString());
-        }
         model.removeExercise(routineToDelete, targetExercise.getZeroBased());
-        System.out.println(routineToDelete.getExercises().size());
+
         return new CommandResult(String.format(MESSAGE_DELETE_ROUTINE_SUCCESS, exercise1, routineToDelete));
     }
-    /*
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteRoutineCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteRoutineCommand) other).targetIndex)); // state check
+                || (other instanceof DeleteExerciseCommand // instanceof handles nulls
+                && targetRoutine.equals(((DeleteExerciseCommand) other).targetRoutine)
+                && targetExercise.equals(((DeleteExerciseCommand) other).targetExercise)); // state check
     }
 
-    */
 }

@@ -4,7 +4,6 @@ import static seedu.fitbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import seedu.fitbook.commons.core.index.Index;
 import seedu.fitbook.logic.commands.DeleteExerciseCommand;
-import seedu.fitbook.logic.commands.DeleteRoutineCommand;
 import seedu.fitbook.logic.parser.exceptions.ParseException;
 
 /**

@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.fitbook.model.routines.Exercise;
 import seedu.fitbook.model.routines.Routine;
 import seedu.fitbook.model.routines.UniqueRoutineList;
 
@@ -59,7 +60,7 @@ public class FitBookExerciseRoutine implements ReadOnlyFitBookExerciseRoutine {
     //// routine-level operations
 
     /**
-     * Returns true if a routine with the same identity as {@code routine} exists in the address book.
+     * Returns true if a routine with the same identity as {@code routine} exists in FitBook.
      */
     public boolean hasRoutine(Routine routine) {
         requireNonNull(routine);
@@ -82,7 +83,6 @@ public class FitBookExerciseRoutine implements ReadOnlyFitBookExerciseRoutine {
      */
     public void setRoutine(Routine target, Routine editedRoutine) {
         requireNonNull(editedRoutine);
-
         routines.setRoutine(target, editedRoutine);
     }
 
@@ -94,6 +94,18 @@ public class FitBookExerciseRoutine implements ReadOnlyFitBookExerciseRoutine {
         routines.remove(key);
     }
 
+    /**
+     * Adds an exercise to the exercise list of {@code Routine}
+     */
+    public void addExercise(Routine routine, Exercise exercise) {
+        requireNonNull(routine);
+        requireNonNull(exercise);
+        routine.addExercise(exercise);
+    }
+
+    /**
+     * Removes an exercise from the exercise list of {@code Routine}
+     */
 
     public void removeExercise(Routine routine, int targetIndex) {
         requireNonNull(routine);

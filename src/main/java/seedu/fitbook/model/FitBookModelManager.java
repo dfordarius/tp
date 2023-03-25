@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.fitbook.commons.core.GuiSettings;
 import seedu.fitbook.commons.core.LogsCenter;
 import seedu.fitbook.model.client.Client;
+import seedu.fitbook.model.routines.Exercise;
 import seedu.fitbook.model.routines.Routine;
 
 /**
@@ -27,7 +28,7 @@ public class FitBookModelManager implements FitBookModel {
     private final FitBookExerciseRoutine fitBookExerciseRoutine;
 
     /**
-     * Initializes a FitBookModelManager with the given addressBook and userPrefs.
+     * Initializes a FitBookModelManager with the given FitBook and userPrefs.
      */
     public FitBookModelManager(ReadOnlyFitBook fitBook, ReadOnlyFitBookExerciseRoutine fitBookExerciseRoutine,
                                ReadOnlyUserPrefs userPrefs) {
@@ -152,6 +153,12 @@ public class FitBookModelManager implements FitBookModel {
     }
 
     @Override
+    public void addExercise(Routine routine, Exercise exercise) {
+        fitBookExerciseRoutine.addExercise(routine, exercise);
+        updateFilteredRoutineList(PREDICATE_SHOW_ALL_ROUTINES);
+    }
+
+    @Override
     public void setRoutine(Routine target, Routine editedRoutine) {
         requireAllNonNull(target, editedRoutine);
         fitBookExerciseRoutine.setRoutine(target, editedRoutine);
@@ -191,6 +198,7 @@ public class FitBookModelManager implements FitBookModel {
         filteredRoutines.setPredicate(predicate);
     }
 
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -206,9 +214,9 @@ public class FitBookModelManager implements FitBookModel {
         // state check
         FitBookModelManager other = (FitBookModelManager) obj;
         return fitBook.equals(other.fitBook)
-                && fitBookExerciseRoutine.equals(other.fitBookExerciseRoutine)
                 && userPrefs.equals(other.userPrefs)
                 && filteredClients.equals(other.filteredClients)
+                && fitBookExerciseRoutine.equals(other.fitBookExerciseRoutine)
                 && filteredRoutines.equals(other.filteredRoutines);
     }
 
