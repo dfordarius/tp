@@ -14,9 +14,11 @@ public class Appointment implements Comparable<Appointment> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Appointment should be in dd-mm-yyyy HH:mm format.";
+    public static final String DATE_CONSTRAINTS =
+            "Appointment should only be after the current date and time.";
     public static final String VALIDATION_REGEX =
             "^(?:0[1-9]|[1-2][0-9]|3[0-1])-(?:0[1-9]|1[0-2])-(?:[0-9]{4}) (?:[01][0-9]|2[0-3]):(?:[0-5][0-9])$";
-    public final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+    public static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
     public final String appointmentTime;
     private final LocalDateTime localDateTime;
@@ -41,6 +43,13 @@ public class Appointment implements Comparable<Appointment> {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if a given string is before current data and time.
+     */
+    public static boolean isDatePassed(String appointment) {
+        LocalDateTime temp = LocalDateTime.parse(appointment, dateTimeFormatter);
+        return temp.isBefore(LocalDateTime.now());
+    }
     @Override
     public String toString() {
         return localDateTime.format(dateTimeFormatter);
