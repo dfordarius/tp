@@ -11,11 +11,11 @@ public class Calorie {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Calories should only contain numbers, and it should be at least 4 digits long";
-    public static final String VALIDATION_REGEX = "\\d{4,}";
+    public static final String VALIDATION_REGEX = "\\d{4}";
     public final String value;
 
     /**
-     * Constructs a {@code Calorie}.
+     * Constructs a {@code Calogitrie}.
      *
      * @param calorie A valid recommended calorie intake.
      */
