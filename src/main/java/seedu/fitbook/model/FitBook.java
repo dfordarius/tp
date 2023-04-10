@@ -7,7 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.fitbook.model.client.Client;
 import seedu.fitbook.model.client.UniqueClientList;
-
+//@@author
 /**
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSameClient comparison)
@@ -26,7 +26,7 @@ public class FitBook implements ReadOnlyFitBook {
     {
         clients = new UniqueClientList();
     }
-
+    //@@author
     public FitBook() {}
 
     /**
@@ -38,7 +38,7 @@ public class FitBook implements ReadOnlyFitBook {
     }
 
     //// list overwrite operations
-
+    //@@author
     /**
      * Replaces the contents of the client list with {@code clients}.
      * {@code clients} must not contain duplicate clients.
@@ -46,7 +46,7 @@ public class FitBook implements ReadOnlyFitBook {
     public void setClients(List<Client> clients) {
         this.clients.setClients(clients);
     }
-
+    //@@author
     /**
      * Resets the existing data of this {@code FitBook} with {@code newData}.
      */
@@ -57,7 +57,7 @@ public class FitBook implements ReadOnlyFitBook {
     }
 
     //// client-level operations
-
+    //@@author
     /**
      * Returns true if a client with the same identity as {@code client} exists in FitBook.
      */
@@ -65,7 +65,7 @@ public class FitBook implements ReadOnlyFitBook {
         requireNonNull(client);
         return clients.contains(client);
     }
-
+    //@@author
     /**
      * Adds a client to FitBook.
      * The client must not already exist in FitBook.
@@ -73,7 +73,7 @@ public class FitBook implements ReadOnlyFitBook {
     public void addClient(Client p) {
         clients.add(p);
     }
-
+    //@@author
     /**
      * Replaces the given client {@code target} in the list with {@code editedClient}.
      * {@code target} must exist in FitBook.
@@ -84,7 +84,7 @@ public class FitBook implements ReadOnlyFitBook {
 
         clients.setClient(target, editedClient);
     }
-
+    //@@author
     /**
      * Removes {@code key} from this {@code FitBook}.
      * {@code key} must exist in FitBook.
@@ -94,25 +94,25 @@ public class FitBook implements ReadOnlyFitBook {
     }
 
     //// util methods
-
+    //@@author
     @Override
     public String toString() {
         return clients.asUnmodifiableObservableList().size() + " clients";
         // TODO: refine later
     }
-
+    //@@author
     @Override
     public ObservableList<Client> getClientList() {
         return clients.asUnmodifiableObservableList();
     }
-
+    //@@author
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FitBook // instanceof handles nulls
                 && clients.equals(((FitBook) other).clients));
     }
-
+    //@@author
     @Override
     public int hashCode() {
         return clients.hashCode();
